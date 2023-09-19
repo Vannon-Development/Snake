@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxyctk2tc0j3p"]
+
+[ext_resource type="Texture2D" uid="uid://cu3s80i8ng1fn" path="res://Snake_0000_Heart.png" id="1_28183"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oaiti"]
+
+[node name="Area2D" type="Area2D"]
+visibility_layer = 2
+
+[node name="Visual" type="Sprite2D" parent="."]
+texture = ExtResource("1_28183")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_oaiti")

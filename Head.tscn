@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cygf7b0ro8ox5"]
+
+[ext_resource type="Texture2D" uid="uid://bh7wqxagnrct3" path="res://Snake_0000_Head.png" id="1_3ksao"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hsml5"]
+
+[node name="Head" type="Area2D"]
+
+[node name="Visual" type="Sprite2D" parent="."]
+texture = ExtResource("1_3ksao")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hsml5")

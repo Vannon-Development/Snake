@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://uownoiemxf4r"]
+
+[ext_resource type="Script" path="res://Snake.gd" id="1_kk2d8"]
+[ext_resource type="PackedScene" uid="uid://cygf7b0ro8ox5" path="res://Head.tscn" id="2_frcas"]
+[ext_resource type="PackedScene" uid="uid://dhlg5lhb0i43c" path="res://StartScreen.tscn" id="3_th173"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n8ubf"]
+size = Vector2(10, 514)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pmbqy"]
+size = Vector2(514, 10)
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_kk2d8")
+metadata/CycleTime = 500
+
+[node name="Area" type="Node2D" parent="."]
+position = Vector2(15, 60)
+
+[node name="Line2D" type="Line2D" parent="Area"]
+position = Vector2(-5, -5)
+points = PackedVector2Array(0, 0, 514, 0, 514, 514, 0, 514, 0, -5)
+
+[node name="Area2D" type="Area2D" parent="Area"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area/Area2D"]
+position = Vector2(-5, 252)
+shape = SubResource("RectangleShape2D_n8ubf")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area/Area2D"]
+position = Vector2(509, 252)
+shape = SubResource("RectangleShape2D_n8ubf")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Area/Area2D"]
+position = Vector2(252, 509)
+shape = SubResource("RectangleShape2D_pmbqy")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Area/Area2D"]
+position = Vector2(252, -5)
+shape = SubResource("RectangleShape2D_pmbqy")
+
+[node name="Head" parent="Area" instance=ExtResource("2_frcas")]
+position = Vector2(228, 228)
+
+[node name="Score Label" type="Label" parent="."]
+offset_left = 15.0
+offset_top = 25.0
+offset_right = 479.0
+offset_bottom = 53.0
+text = "Score:"
+
+[node name="Start Screen" parent="." instance=ExtResource("3_th173")]
+
+[connection signal="area_entered" from="Area/Head" to="." method="_on_head_area_entered"]
+[connection signal="FastPressed" from="Start Screen" to="." method="_on_start_screen_fast_pressed"]
+[connection signal="NormalPressed" from="Start Screen" to="." method="_on_start_screen_normal_pressed"]
+[connection signal="SlowPressed" from="Start Screen" to="." method="_on_start_screen_slow_pressed"]
